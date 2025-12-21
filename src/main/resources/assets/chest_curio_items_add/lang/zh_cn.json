@@ -1,0 +1,12 @@
+{
+  "itemGroup.chest_curio_items_add": "箱子饰品：群友的奇思妙想",
+
+  "item.chest_curio_items_add.fission_emblem": "裂变之徽",
+  "item.chest_curio_items_add.fission_emblem.string.1": "使10格内生物提升10%承受伤害",
+  "item.chest_curio_items_add.fission_emblem.string.2": "受到的伤害超过了25%最大生命值",
+  "item.chest_curio_items_add.fission_emblem.string.3": "则此饰品基础属性提升105%，持续20秒",
+  "item.chest_curio_items_add.fission_emblem.string.4": "受到的伤害超过了50%最大生命值",
+  "item.chest_curio_items_add.fission_emblem.string.5": "则伤害提升50%，持续10秒"
+
+
+}

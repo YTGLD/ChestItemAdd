@@ -1,0 +1,49 @@
+{
+
+  "itemGroup.chest_curio_items_add": "Chest Item Add",
+
+  "item.chest_curio_items_add.fission_emblem": "emblem of fission",
+  "item.chest_curio_items_add.fission_emblem.string.1": "Increases damage taken by 10% for creatures within 10 tiles",
+  "item.chest_curio_items_add.fission_emblem.string.2": "Damage taken exceeds 25% of maximum health",
+  "item.chest_curio_items_add.fission_emblem.string.3": "Increases the base stats of this accessory by 105% for 20 seconds",
+  "item.chest_curio_items_add.fission_emblem.string.4": "Damage taken exceeds 50% of maximum health",
+  "item.chest_curio_items_add.fission_emblem.string.5": "Increases damage by 50% for 10 seconds",
+
+  "item.chest_curio_items_add.owner": "这个物品的灵感来源/提供者：",
+  "item.chest_curio_items_add.life_tree": "生命之树",
+  "item.chest_curio_items_add.life_tree.string.0": "不管人们对于我们腐烂的皮肉，\n那些迷途的惆怅，失败的苦痛，\n是寄予感动的热泪，深切的同情，\n还是给以轻蔑的微笑，辛辣的嘲讽。\n我坚信人们对于我们的脊骨，\n那无数次地探索、迷途、失败和成功，\n一定会给予热情、客观、公正的评定，\n是的，我焦急地等待着他们的评定。\n朋友，坚定地相信未来吧，\n相信不屈不挠的努力，\n相信战胜死亡的年轻，\n相信未来，热爱生命。",
+  "item.chest_curio_items_add.life_tree.string.1": "持续吸周围敌对生物血液",
+  "item.chest_curio_items_add.life_tree.string.2": "玩家生命值上限越高，吸取的血液的越多",
+  "item.chest_curio_items_add.life_tree.string.3": "玩家当前生命值越低，吸血能力越强",
+  "item.chest_curio_items_add.life_tree.string.4": "对友好生物则是回血而并非是吸取",
+
+
+  "item.chest_curio_items_add.devil_ringing": "恶魔响铃",
+  "item.chest_curio_items_add.devil_ringing.string.1": "减少震钟2秒的激活时间，",
+  "item.chest_curio_items_add.devil_ringing.string.2": "使不稳定层数上限增加3层，增加每层1点真实伤害",
+  "item.chest_curio_items_add.devil_ringing.string.3": "根据叠加的层数减少目标被引爆后的护甲值",
+
+
+
+  "item.chest_curio_items_add.the_remnants_of_the_hunt": "残息追猎",
+  "item.chest_curio_items_add.the_remnants_of_the_hunt.string.1": "使用时检测半径20m内所有实体（发光），满血时探测8s，若不是则探测15s（冷却20秒）",
+  "item.chest_curio_items_add.the_remnants_of_the_hunt.string.2": "附近存在被探测到的目标时增加自己的移速，攻速和攻击伤害",
+  "item.chest_curio_items_add.the_remnants_of_the_hunt.string.3": "每击杀1个目标恢复等同于最后一击造成伤害50%的生命值",
+
+
+  "item.chest_curio_items_add.bell": "震钟",
+  "item.chest_curio_items_add.bell.string.1": "每5秒激活一次，以玩家为中心，向外6格呈现圆的区域内，为生物施加一次不稳定",
+  "item.chest_curio_items_add.bell.string.2": "不稳定叠加至多5层",
+  "item.chest_curio_items_add.bell.string.3": "叠加满时再次叠加即可产生震爆并清除所有不稳定层数，每层不稳定固定造成4点真实伤害",
+
+  "item.chest_curio_items_add.thunder_drum": "雷鼓",
+  "item.chest_curio_items_add.thunder_drum.string.1": "增加6点震钟范围，施加不稳定使额外施加一层",
+  "item.chest_curio_items_add.thunder_drum.string.2": "使不稳定层数上限增加2层",
+  "item.chest_curio_items_add.thunder_drum.string.3": "根据叠加的层数增加目标每层5％的受伤倍率",
+
+  "item.chest_curio_items_add.old_hatred": "旧仇恨",
+  "item.chest_curio_items_add.old_hatred.string.1": "以你为敌的怪物每隔3秒受到一次凋零伤害",
+  "item.chest_curio_items_add.old_hatred.string.2": "攻击你的生物会失明15秒，同时你获得力量2 15秒",
+  "item.chest_curio_items_add.old_hatred.string.3": "玩家当前生命值越低，吸血能力越强",
+  "item.chest_curio_items_add.old_hatred.string.4": "你杀死的生物概率掉落铜/铁/金"
+}
