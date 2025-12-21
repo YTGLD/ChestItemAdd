@@ -30,11 +30,17 @@
   "item.chest_curio_items_add.the_remnants_of_the_hunt.string.2": "附近存在被探测到的目标时增加自己的移速，攻速和攻击伤害",
   "item.chest_curio_items_add.the_remnants_of_the_hunt.string.3": "每击杀1个目标恢复等同于最后一击造成伤害50%的生命值",
 
-
   "item.chest_curio_items_add.bell": "震钟",
   "item.chest_curio_items_add.bell.string.1": "每5秒激活一次，以玩家为中心，向外6格呈现圆的区域内，为生物施加一次不稳定",
   "item.chest_curio_items_add.bell.string.2": "不稳定叠加至多5层",
   "item.chest_curio_items_add.bell.string.3": "叠加满时再次叠加即可产生震爆并清除所有不稳定层数，每层不稳定固定造成4点真实伤害",
+
+
+  "item.chest_curio_items_add.ectopic_blood": "异位神血",
+  "item.chest_curio_items_add.ectopic_blood.string.1": "异界神明赐下的精血，一但喝下虽然能强化自身\n但也会被自己所属的世界排斥打上异端的标签......",
+  "item.chest_curio_items_add.ectopic_blood.string.2": "增加10%最大生命值，增加15%护甲值，增加5%所有伤害",
+  "item.chest_curio_items_add.ectopic_blood.string.3": "对物理伤害有10%的抗性，魔法有80%抗性，但额外受到50%虚空伤害",
+  "item.chest_curio_items_add.ectopic_blood.string.4": "不死图腾的规避死亡无法对你生效",
 
   "item.chest_curio_items_add.thunder_drum": "雷鼓",
   "item.chest_curio_items_add.thunder_drum.string.1": "增加6点震钟范围，施加不稳定使额外施加一层",

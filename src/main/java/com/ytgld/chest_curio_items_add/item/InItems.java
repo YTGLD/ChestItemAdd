@@ -5,6 +5,7 @@ import com.ytgld.chest_curio_items_add.item.things.FissionEmblem;
 import com.ytgld.chest_curio_items_add.item.things.days.LifeTree;
 import com.ytgld.chest_curio_items_add.item.things.days.OldHatred;
 import com.ytgld.chest_curio_items_add.item.things.days.TheRemnantsOfTheHunt;
+import com.ytgld.chest_curio_items_add.item.things.weiyu.TheEctopicDivineBlood;
 import com.ytgld.chest_curio_items_add.item.things.yilezi.Bell;
 import com.ytgld.chest_curio_items_add.item.things.yilezi.DevilRinging;
 import com.ytgld.chest_curio_items_add.item.things.yilezi.ThunderDrum;
@@ -40,9 +41,11 @@ public class InItems {
     public static final DeferredItem<Item> DevilRinging_ = register("devil_ringing", (resourceLocation) -> {
         return new DevilRinging((new Item.Properties()).stacksTo(1));
     });
-
     public static final DeferredItem<Item> TheRemnantsOfTheHunt_ = register("the_remnants_of_the_hunt", (resourceLocation) -> {
         return new TheRemnantsOfTheHunt((new Item.Properties()).stacksTo(1));
+    });
+    public static final DeferredItem<Item> TheEctopicDivineBlood_ = register("ectopic_blood", (resourceLocation) -> {
+        return new TheEctopicDivineBlood((new Item.Properties()).stacksTo(1));
     });
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ChestAddMod.MODID);;
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> tab = CREATIVE_MODE_TABS.register(ChestAddMod.MODID, () -> {
@@ -57,6 +60,7 @@ public class InItems {
                     output.accept(ThunderDrum_);
                     output.accept(DevilRinging_);
                     output.accept(TheRemnantsOfTheHunt_);
+                    output.accept(TheEctopicDivineBlood_);
 
 
 
