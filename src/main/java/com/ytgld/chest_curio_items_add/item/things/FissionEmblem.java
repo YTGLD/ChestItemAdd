@@ -13,8 +13,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -25,7 +23,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -123,15 +120,15 @@ public class FissionEmblem extends ItemBase {
                     }else {
                         stack.set(DataReg.tag,new CompoundTag());
                     }
-                    player.getAttributes().addTransientAttributeModifiers(attributeModifierMultimap(stack));
                     break;
                 }
-                player.getAttributes().removeAttributeModifiers(attributeModifierMultimap(stack));
             }
         }
 
     }
-    public static Multimap<Holder<Attribute>, AttributeModifier> attributeModifierMultimap(ItemStack stack) {
+
+    @Override
+    public Multimap<Holder<Attribute>, AttributeModifier> doAttribute(ItemStack stack, Player player) {
         Multimap<Holder<Attribute>, AttributeModifier> modifiers = HashMultimap.create();
         float damage = 2;
         float armor = 0.05f;
@@ -171,7 +168,7 @@ public class FissionEmblem extends ItemBase {
                 .withStyle(ChatFormatting.LIGHT_PURPLE));
         if (tooltipFlag.hasShiftDown()) {
             tooltipComponents.add(Component.literal(""));
-            tooltipComponents.add(Component.translatable("item.chest_curio_items_add.fission_emblem.string.1").withStyle(ChatFormatting.GOLD));
+                tooltipComponents.add(Component.translatable("item.chest_curio_items_add.fission_emblem.string.1").withStyle(ChatFormatting.GOLD));
             tooltipComponents.add(Component.literal(""));
             tooltipComponents.add(Component.translatable("item.chest_curio_items_add.fission_emblem.string.2").withStyle(ChatFormatting.GOLD));
             tooltipComponents.add(Component.translatable("item.chest_curio_items_add.fission_emblem.string.3").withStyle(ChatFormatting.GOLD));
@@ -182,7 +179,5 @@ public class FissionEmblem extends ItemBase {
             tooltipComponents.add(Component.translatable("key.keyboard.left.shift").withStyle(ChatFormatting.YELLOW));
         }
     }
-    public @Nullable Multimap<Holder<Attribute>, AttributeModifier> muAttribute(Player player, ItemStack stack) {
-        return attributeModifierMultimap(stack);
-    }
+
 }

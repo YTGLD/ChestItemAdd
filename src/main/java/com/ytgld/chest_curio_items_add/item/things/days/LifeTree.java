@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.objectweb.asm.Handle;
 
 import java.util.List;
 
@@ -43,55 +44,47 @@ public class LifeTree extends ItemBone {
     }
 
     public static void tick(ItemStackTickEvent event) {
-        ChestInventory chestInventory = event.chestInventory;
         Player player = event.player;
-        if (!player.level().isClientSide()) {
-            for(int i = 0; i < chestInventory.getContainerSize(); ++i) {
-                ItemStack stack = chestInventory.getItem(i);
-                if (player.tickCount % 20 == 1) {
-                    if (stack.is(InItems.LifeTree_)) {
-                        Vec3 playerPos = player.position();
-                        int range = 8;
-                        List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, new AABB(playerPos.x - (double) range,
-                                playerPos.y - (double) range, playerPos.z - (double) range,
-                                playerPos.x + (double) range, playerPos.y + (double) range,
-                                playerPos.z + (double) range));
-                        float modify = player.getMaxHealth() * 0.05f;
-                        float health = player.getHealth();
-                        float maxHealth = player.getMaxHealth();
-                        float s = 1 + (1 -  health / maxHealth);
-                        modify *= s;
-                        for (LivingEntity living : entities) {
-                            if (!living.is(player)) {
-                                if (living.isAlive()) {
-                                    if (living instanceof Targeting targeting) {
-                                        LivingEntity entity = targeting.getTarget();
-                                        if (entity != null) {
-                                            if (entity.is(player)) {
-                                                if (living.getMaxHealth() > 1 + modify) {
-                                                    living.hurt(living.damageSources().genericKill(), modify);
-                                                    player.heal(modify / entities.size());
-                                                }
-                                            } else {
-                                                if (!entity.is(player)) {
-                                                    living.heal(modify / entities.size());
-                                                }
-                                            }
-                                        }
+        if (Handler.has(player, InItems.LifeTree_.asItem())) {
+            Vec3 playerPos = player.position();
+            int range = 8;
+            List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, new AABB(playerPos.x - (double) range,
+                    playerPos.y - (double) range, playerPos.z - (double) range,
+                    playerPos.x + (double) range, playerPos.y + (double) range,
+                    playerPos.z + (double) range));
+            float modify = player.getMaxHealth() * 0.05f;
+            float health = player.getHealth();
+            float maxHealth = player.getMaxHealth();
+            float s = 1 + (1 -  health / maxHealth);
+            modify *= s;
+            for (LivingEntity living : entities) {
+                if (!living.is(player)) {
+                    if (living.isAlive()) {
+                        if (living instanceof Targeting targeting) {
+                            LivingEntity entity = targeting.getTarget();
+                            if (entity != null) {
+                                if (entity.is(player)) {
+                                    if (living.getMaxHealth() > 1 + modify) {
+                                        living.hurt(living.damageSources().genericKill(), modify);
+                                        player.heal(modify / entities.size());
                                     }
-                                    if (living instanceof OwnableEntity ownableEntity) {
-                                        LivingEntity entity = ownableEntity.getOwner();
-                                        if (entity != null) {
-                                            if (entity.is(player)) {
-                                                float h = modify / entities.size();
-                                                if (h < 1) {
-                                                    h = 1;
-                                                }
-                                                living.heal(h);
-                                                break;
-                                            }
-                                        }
+                                } else {
+                                    if (!entity.is(player)) {
+                                        living.heal(modify / entities.size());
                                     }
+                                }
+                            }
+                        }
+                        if (living instanceof OwnableEntity ownableEntity) {
+                            LivingEntity entity = ownableEntity.getOwner();
+                            if (entity != null) {
+                                if (entity.is(player)) {
+                                    float h = modify / entities.size();
+                                    if (h < 1) {
+                                        h = 1;
+                                    }
+                                    living.heal(h);
+                                    break;
                                 }
                             }
                         }

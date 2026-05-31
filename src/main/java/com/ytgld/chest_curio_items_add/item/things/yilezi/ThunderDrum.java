@@ -3,7 +3,6 @@ package com.ytgld.chest_curio_items_add.item.things.yilezi;
 import com.ytgld.chest_curio_items_add.effect.ADDEffects;
 import com.ytgld.chest_curio_items_add.item.InItems;
 import com.ytgld.chest_item.Handler;
-import com.ytgld.chest_item.items.ItemBase;
 import com.ytgld.chest_item.items.ItemBlackShadow;
 import com.ytgld.chest_item.other.ChestInventory;
 import net.minecraft.ChatFormatting;
@@ -11,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,20 +37,11 @@ public class ThunderDrum extends ItemBlackShadow {
 
     public static void attack(LivingDamageEvent.Pre event) {
         if (event.getSource().getEntity() instanceof Player player) {
-            ChestInventory chestInventory = Handler.getItem(player);
-            if (chestInventory !=null) {
-                if (!player.level().isClientSide()) {
-                    for (int i = 0; i < chestInventory.getContainerSize(); ++i) {
-                        ItemStack stack = chestInventory.getItem(i);
-                        if (stack.is(InItems.ThunderDrum_)) {
-                            if (event.getEntity() instanceof LivingEntity living) {
-                                @Nullable MobEffectInstance mobEffectInstance = living.getEffect(ADDEffects.Instability_);
-                                if (mobEffectInstance != null){
-                                    event.setNewDamage(event.getNewDamage() * (1 + (mobEffectInstance.getAmplifier() * 0.05f)));
-                                    break;
-                                }
-                            }
-                        }
+            if (Handler.has(player, InItems.ThunderDrum_.asItem())){
+                if (event.getEntity() instanceof LivingEntity living) {
+                    @Nullable MobEffectInstance mobEffectInstance = living.getEffect(ADDEffects.Instability_);
+                    if (mobEffectInstance != null){
+                        event.setNewDamage(event.getNewDamage() * (1 + (mobEffectInstance.getAmplifier() * 0.05f)));
                     }
                 }
             }

@@ -7,20 +7,16 @@ import com.ytgld.chest_curio_items_add.item.InItems;
 import com.ytgld.chest_item.Handler;
 import com.ytgld.chest_item.event.activated.ci.ItemStackTickEvent;
 import com.ytgld.chest_item.items.ItemBase;
-import com.ytgld.chest_item.items.ItemBlackShadow;
 import com.ytgld.chest_item.other.ChestInventory;
 import com.ytgld.chest_item.other.DataReg;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -29,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
@@ -91,21 +86,12 @@ public class TheRemnantsOfTheHunt extends ItemBase {
     }
     public static void attack(LivingDeathEvent event) {
         if (event.getSource().getEntity() instanceof Player player) {
-            ChestInventory chestInventory = Handler.getItem(player);
-            if (chestInventory !=null) {
-                if (!player.level().isClientSide()) {
-                    for (int i = 0; i < chestInventory.getContainerSize(); ++i) {
-                        ItemStack stack = chestInventory.getItem(i);
-                        if (stack.is(InItems.TheRemnantsOfTheHunt_)) {
-                            if (!player.getCooldowns().isOnCooldown(stack.getItem())) {
-                                if (event.getEntity() instanceof LivingEntity living) {
-                                    if (living.hasEffect(MobEffects.GLOWING)) {
-                                        player.heal((float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f));
-                                        player.getCooldowns().addCooldown(stack.getItem(), 10);
-                                        break;
-                                    }
-                                }
-                            }
+            if (Handler.has(player, InItems.TheRemnantsOfTheHunt_.asItem())){
+                if (!player.getCooldowns().isOnCooldown(InItems.TheRemnantsOfTheHunt_.asItem().getDefaultInstance().getItem())) {
+                    if (event.getEntity() instanceof LivingEntity living) {
+                        if (living.hasEffect(MobEffects.GLOWING)) {
+                            player.heal((float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f));
+                            player.getCooldowns().addCooldown(InItems.TheRemnantsOfTheHunt_.asItem().getDefaultInstance().getItem(), 10);
                         }
                     }
                 }
@@ -114,22 +100,8 @@ public class TheRemnantsOfTheHunt extends ItemBase {
     }
 
     public static void tickAttrib(ItemStackTickEvent event) {
-        ChestInventory chestInventory = event.chestInventory;
-        Player player = event.player;
-        if (!player.level().isClientSide()) {
-            for(int i = 0; i < chestInventory.getContainerSize(); ++i) {
-                ItemStack stack = chestInventory.getItem(i);
-                if (stack.is(InItems.TheRemnantsOfTheHunt_)) {
-                    player.getAttributes().addTransientAttributeModifiers(attributeModifierMultimap(stack));
-                    break;
-                }
-
-                player.getAttributes().removeAttributeModifiers(attributeModifierMultimap(stack));
-            }
-        }
-
     }
-    public static Multimap<Holder<Attribute>, AttributeModifier> attributeModifierMultimap(ItemStack stack) {
+    public Multimap<Holder<Attribute>, AttributeModifier> doAttribute(ItemStack stack, Player player) {
         Multimap<Holder<Attribute>, AttributeModifier> modifiers = HashMultimap.create();
         float a = 0;
         CompoundTag compoundTag = stack.get(DataReg.tag);

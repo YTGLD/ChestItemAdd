@@ -9,6 +9,7 @@ import com.ytgld.chest_curio_items_add.item.things.weiyu.TheEctopicDivineBlood;
 import com.ytgld.chest_curio_items_add.item.things.yilezi.Bell;
 import com.ytgld.chest_curio_items_add.item.things.yilezi.DevilRinging;
 import com.ytgld.chest_curio_items_add.item.things.yilezi.ThunderDrum;
+import com.ytgld.chest_curio_items_add.item.things.ytgld.IsGone;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -47,12 +48,15 @@ public class InItems {
     public static final DeferredItem<Item> TheEctopicDivineBlood_ = register("ectopic_blood", (resourceLocation) -> {
         return new TheEctopicDivineBlood((new Item.Properties()).stacksTo(1));
     });
+    public static final DeferredItem<Item> IsGone_ = register("is_gone", (resourceLocation) -> {
+        return new IsGone((new Item.Properties()).stacksTo(1));
+    });
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ChestAddMod.MODID);;
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> tab = CREATIVE_MODE_TABS.register(ChestAddMod.MODID, () -> {
         return CreativeModeTab.builder().title(Component.translatable("itemGroup.chest_curio_items_add"))
                 .icon(Items.ENDER_CHEST::getDefaultInstance).displayItems((parameters, output) -> {
-
                     output.accept(OldHatred_);
+                    output.accept(IsGone_);
 
                     output.accept(FissionEmblem_);
                     output.accept(LifeTree_);

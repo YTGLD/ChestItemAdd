@@ -3,7 +3,6 @@ package com.ytgld.chest_curio_items_add.item.things.yilezi;
 import com.ytgld.chest_curio_items_add.effect.ADDEffects;
 import com.ytgld.chest_curio_items_add.item.InItems;
 import com.ytgld.chest_item.Handler;
-import com.ytgld.chest_item.effect.Effects;
 import com.ytgld.chest_item.event.activated.ci.ItemStackTickEvent;
 import com.ytgld.chest_item.items.ItemBase;
 import com.ytgld.chest_item.other.ChestInventory;
@@ -11,13 +10,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Targeting;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -38,45 +35,39 @@ public class Bell extends ItemBase {
 
 
     public static void tick(ItemStackTickEvent event) {
-        ChestInventory chestInventory = event.chestInventory;
         Player player = event.player;
-        if (!player.level().isClientSide()) {
-            for(int i = 0; i < chestInventory.getContainerSize(); ++i) {
-                ItemStack stack = chestInventory.getItem(i);
-                if (stack.is(InItems.Bell_ )) {
-                    Vec3 playerPos = player.position();
-                    int range = rage(player);
-                    List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, new AABB(playerPos.x - (double) range,
-                            playerPos.y - (double) range, playerPos.z - (double) range,
-                            playerPos.x + (double) range, playerPos.y + (double) range,
-                            playerPos.z + (double) range));
+        if (Handler.has(player, InItems.Bell_.asItem())) {
+            Vec3 playerPos = player.position();
+            int range = rage(player);
+            List<LivingEntity> entities = player.level().getEntitiesOfClass(LivingEntity.class, new AABB(playerPos.x - (double) range,
+                    playerPos.y - (double) range, playerPos.z - (double) range,
+                    playerPos.x + (double) range, playerPos.y + (double) range,
+                    playerPos.z + (double) range));
 
-                    for (LivingEntity living : entities) {
-                        if (!living.is(player)){
-                            if (living.tickCount % time(player) == 0) {
-                                living.addEffect(new MobEffectInstance(ADDEffects.Instability_, 30 * 20, 0));
-                                @Nullable MobEffectInstance mobEffectInstance = living.getEffect(ADDEffects.Instability_);
-                                if (mobEffectInstance != null) {
-                                    if (mobEffectInstance.getAmplifier() < maxLevel(player)) {
-                                        living.addEffect(new MobEffectInstance(mobEffectInstance.getEffect(),
-                                                30 * 20,
-                                                mobEffectInstance.getAmplifier() + addLevel(player)));
-                                    } else {
-                                        living.addEffect(new MobEffectInstance(mobEffectInstance.getEffect(),
-                                                30 * 20,
-                                                maxLevel(player) + 1));
-                                    }
+            for (LivingEntity living : entities) {
+                if (!living.is(player)) {
+                    if (living.tickCount % time(player) == 0) {
+                        living.addEffect(new MobEffectInstance(ADDEffects.Instability_, 30 * 20, 0));
+                        @Nullable MobEffectInstance mobEffectInstance = living.getEffect(ADDEffects.Instability_);
+                        if (mobEffectInstance != null) {
+                            if (mobEffectInstance.getAmplifier() < maxLevel(player)) {
+                                living.addEffect(new MobEffectInstance(mobEffectInstance.getEffect(),
+                                        30 * 20,
+                                        mobEffectInstance.getAmplifier() + addLevel(player)));
+                            } else {
+                                living.addEffect(new MobEffectInstance(mobEffectInstance.getEffect(),
+                                        30 * 20,
+                                        maxLevel(player) + 1));
+                            }
 
-                                    if (mobEffectInstance.getAmplifier() > boomLevel(player)) {
-                                        if (Handler.has(player,InItems.DevilRinging_.asItem())){
-                                            living.addEffect(new MobEffectInstance(ADDEffects.ArmorDown_,2000,boomLevel(player)));
-                                        }
-
-                                        living.hurt(living.damageSources().wither(), mobEffectInstance.getAmplifier() * 5f);
-                                        living.removeEffect(ADDEffects.Instability_);
-
-                                    }
+                            if (mobEffectInstance.getAmplifier() > boomLevel(player)) {
+                                if (Handler.has(player, InItems.DevilRinging_.asItem())) {
+                                    living.addEffect(new MobEffectInstance(ADDEffects.ArmorDown_, 2000, boomLevel(player)));
                                 }
+
+                                living.hurt(living.damageSources().wither(), mobEffectInstance.getAmplifier() * 5f);
+                                living.removeEffect(ADDEffects.Instability_);
+
                             }
                         }
                     }

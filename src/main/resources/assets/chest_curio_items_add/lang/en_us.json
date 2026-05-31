@@ -2,12 +2,12 @@
 
   "itemGroup.chest_curio_items_add": "Chest Item Add",
 
-  "item.chest_curio_items_add.fission_emblem": "emblem of fission",
-  "item.chest_curio_items_add.fission_emblem.string.1": "Increases damage taken by 10% for creatures within 10 tiles",
-  "item.chest_curio_items_add.fission_emblem.string.2": "Damage taken exceeds 25% of maximum health",
-  "item.chest_curio_items_add.fission_emblem.string.3": "Increases the base stats of this accessory by 105% for 20 seconds",
-  "item.chest_curio_items_add.fission_emblem.string.4": "Damage taken exceeds 50% of maximum health",
-  "item.chest_curio_items_add.fission_emblem.string.5": "Increases damage by 50% for 10 seconds",
+  "item.chest_curio_items_add.fission_emblem": "裂变之徽",
+  "item.chest_curio_items_add.fission_emblem.string.1": "使10格内生物提升10%承受伤害",
+  "item.chest_curio_items_add.fission_emblem.string.2": "受到的伤害超过了25%最大生命值",
+  "item.chest_curio_items_add.fission_emblem.string.3": "则此饰品基础属性提升105%，持续20秒",
+  "item.chest_curio_items_add.fission_emblem.string.4": "受到的伤害超过了50%最大生命值",
+  "item.chest_curio_items_add.fission_emblem.string.5": "则伤害提升50%，持续10秒",
 
   "item.chest_curio_items_add.owner": "这个物品的灵感来源/提供者：",
   "item.chest_curio_items_add.life_tree": "生命之树",
@@ -51,5 +51,9 @@
   "item.chest_curio_items_add.old_hatred.string.1": "以你为敌的怪物每隔3秒受到一次凋零伤害",
   "item.chest_curio_items_add.old_hatred.string.2": "攻击你的生物会失明15秒，同时你获得力量2 15秒",
   "item.chest_curio_items_add.old_hatred.string.3": "玩家当前生命值越低，吸血能力越强",
-  "item.chest_curio_items_add.old_hatred.string.4": "你杀死的生物概率掉落铜/铁/金"
+  "item.chest_curio_items_add.old_hatred.string.4": "你杀死的生物概率掉落铜/铁/金",
+
+
+  "item.chest_curio_items_add.is_gone": "信仰无存",
+  "item.chest_curio_items_add.is_gone.string.1": "每个信仰都将提供1级时运和抢夺"
 }

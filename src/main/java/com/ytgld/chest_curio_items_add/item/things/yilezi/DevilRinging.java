@@ -35,20 +35,11 @@ public class DevilRinging extends ItemBlackShadow {
     }
     public static void attack(LivingDamageEvent.Pre event) {
         if (event.getSource().getEntity() instanceof Player player) {
-            ChestInventory chestInventory = Handler.getItem(player);
-            if (chestInventory !=null) {
-                if (!player.level().isClientSide()) {
-                    for (int i = 0; i < chestInventory.getContainerSize(); ++i) {
-                        ItemStack stack = chestInventory.getItem(i);
-                        if (stack.is(InItems.DevilRinging_)) {
-                            if (event.getEntity() instanceof LivingEntity living) {
-                                @Nullable MobEffectInstance mobEffectInstance = living.getEffect(ADDEffects.Instability_);
-                                if (mobEffectInstance != null){
-                                    event.setNewDamage(event.getNewDamage() + ((mobEffectInstance.getAmplifier())));
-                                    break;
-                                }
-                            }
-                        }
+            if (Handler.has(player, InItems.DevilRinging_.asItem())) {
+                if (event.getEntity() instanceof LivingEntity living) {
+                    @Nullable MobEffectInstance mobEffectInstance = living.getEffect(ADDEffects.Instability_);
+                    if (mobEffectInstance != null) {
+                        event.setNewDamage(event.getNewDamage() + ((mobEffectInstance.getAmplifier())));
                     }
                 }
             }

@@ -1,7 +1,6 @@
 package com.ytgld.chest_curio_items_add.effect;
 
 import com.ytgld.chest_curio_items_add.ChestAddMod;
-import com.ytgld.chest_item.effect.IncreasingMeat;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.neoforged.neoforge.registries.DeferredHolder;
